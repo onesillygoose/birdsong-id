@@ -1,0 +1,4 @@
+Flask
+birdnetlib
+gunicorn
+requests
