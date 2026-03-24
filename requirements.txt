@@ -1,6 +1,4 @@
 Flask
-flask_sqlalchemy
-flask_restful
 birdnetlib
 gunicorn
 requests
