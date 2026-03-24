@@ -1,14 +1,14 @@
 Flask
-birdnetlib
 requests
 gunicorn
 librosa
-numpy
-scipy
 soundfile
-tensorflow==2.10.0
-pandas
 tqdm
 matplotlib
+tensorflow==2.20.0  # latest TF that supports Python 3.10
+birdnetlib==0.2.2   # or your current version
+numpy>=1.23.5
+pandas>=1.5.3
+scipy>=1.9.3
 
 
