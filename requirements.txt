@@ -6,7 +6,7 @@ librosa
 numpy
 scipy
 soundfile
-tensorflow
+tensorflow-cpu
 pandas
 tqdm
 matplotlib
