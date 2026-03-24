@@ -1,6 +1,13 @@
 Flask
 birdnetlib
-gunicorn
 requests
+gunicorn
+librosa
+numpy
+scipy
+soundfile
+pandas
+tqdm
+matplotlib
 
 
