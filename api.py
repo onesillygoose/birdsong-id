@@ -86,15 +86,18 @@ def upload():
         file.save(filepath)
         saved_files.append(filepath)
         print("Received:", file.filename)   
-        threading.Thread(target=process_audio, args=(filepath,)).start()
-        
+        #threading.Thread(target=process_audio, args=(filepath,)).start()
+        process_audio(filepath)
     return {"status": "ok", "files_received": len(saved_files)}
     
 @app.route("/results")    
 def results():
     all_birds = BirdModel.query.all()
 
-    return str([f"{b.species} ({b.confidence}) from {b.recording_session}" for b in all_birds])
+    return str([
+        f"{b.species or 'Unknown'} ({b.confidence or 0}) from {b.recording_session or 'N/A'}"
+        for b in all_birds
+    ])
 
 if __name__ == "__main__":
 
