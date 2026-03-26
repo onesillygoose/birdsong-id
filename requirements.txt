@@ -1,6 +1,8 @@
 Flask
 requests
 gunicorn
+flask_sqlalchemy
+flask_restful
 librosa
 soundfile
 tqdm
