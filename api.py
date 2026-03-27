@@ -97,7 +97,14 @@ def upload():
 def results():
     try:
         all_birds = BirdModel.query.all()
-        return {"count": len(all_birds)}
+        return [
+            {
+                "species": b.species,
+                "confidence": b.confidence,
+                "recording_session": b.recording_session
+            } 
+            for b in all_birds
+        ]   
     except Exception as e:
         return {"error": str(e)}
 
