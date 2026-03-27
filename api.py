@@ -90,14 +90,13 @@ def upload():
         process_audio(filepath)
     return {"status": "ok", "files_received": len(saved_files)}
     
-@app.route("/results")    
+@app.route("/results")
 def results():
-    all_birds = BirdModel.query.all()
-
-    return str([
-        f"{b.species or 'Unknown'} ({b.confidence or 0}) from {b.recording_session or 'N/A'}"
-        for b in all_birds
-    ])
+    try:
+        all_birds = BirdModel.query.all()
+        return {"count": len(all_birds)}
+    except Exception as e:
+        return {"error": str(e)}
 
 if __name__ == "__main__":
 
