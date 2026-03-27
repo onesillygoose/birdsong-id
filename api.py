@@ -9,7 +9,8 @@ from flask_sqlalchemy import SQLAlchemy #remeber to add these to the requirement
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
 db = SQLAlchemy(app)
 api = Api(app)
 
@@ -22,7 +23,9 @@ class BirdModel(db.Model):
 
     def __repr__(self):
         return f"Bird(species = {self.species}, confidence = {self.confidence})"
-    
+        
+with app.app_context():
+    db.create_all()    
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -99,9 +102,6 @@ def results():
         return {"error": str(e)}
 
 if __name__ == "__main__":
-
-    with app.app_context():
-        db.create_all()
 
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
