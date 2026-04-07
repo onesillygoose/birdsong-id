@@ -79,19 +79,18 @@ def upload():
 
     if not files or files[0].filename == "":
         return {"status": "error", "message": "No file part"}, 400
-    if "file" not in request.files:
-        return {"status": "error", "message": "No file part"}, 400
-    
+
     saved_files = []
 
     for file in files:
         filepath = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(filepath)
         saved_files.append(filepath)
-        print("Received:", file.filename)   
-        #threading.Thread(target=process_audio, args=(filepath,)).start()
-        process_audio(filepath)
-    return {"status": "ok", "files_received": len(saved_files)}
+        print("Received:", file.filename)
+        # process in background
+        threading.Thread(target=process_audio, args=(filepath,)).start()
+
+    return {"status": "ok", "files_received": len(saved_files), "message": "Processing started"}
     
 @app.route("/results")
 def results():
