@@ -48,7 +48,7 @@ def process_audio(filepath):
         )
         recording.analyze()
         
-        high_conf_results = [d for d in recording.detections if d["confidence"] > 0.8]
+        high_conf_results = [d for d in recording.detections if d["confidence"] > 0.1]
 
         if high_conf_results:
             with app.app_context():
