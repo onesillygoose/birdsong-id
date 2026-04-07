@@ -94,6 +94,10 @@ def upload():
     
 @app.route("/results")
 def results():
+    return {
+        "files_received": saved_files
+    }   
+    '''
     try:
         all_birds = BirdModel.query.all()
         return [
@@ -106,7 +110,7 @@ def results():
         ]   
     except Exception as e:
         return {"error": str(e)}
-
+    '''
 if __name__ == "__main__":
 
     port = int(os.environ.get("PORT", 5000))
