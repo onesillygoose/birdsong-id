@@ -44,7 +44,7 @@ def process_audio(filepath):
             lat=32.4,
             lon=-81.8,
             date=datetime.now(), #yeah i will have to work on time again
-            min_conf=0.25,
+            min_conf=0.1,
         )
         recording.analyze()
         
@@ -80,37 +80,33 @@ def upload():
     if not files or files[0].filename == "":
         return {"status": "error", "message": "No file part"}, 400
 
-    saved_files = []
-
     for file in files:
         filepath = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(filepath)
-        saved_files.append(filepath)
         print("Received:", file.filename)
+
         # process in background
         threading.Thread(target=process_audio, args=(filepath,)).start()
 
-    return {"status": "ok", "files_received": len(saved_files), "message": "Processing started"}
-    
+    return {
+        "status": "ok",
+        "files_received": len(files),
+        "message": "Processing started"
+    }
+
 @app.route("/results")
 def results():
-    return {
-        "files_received": saved_files
-    }   
-    '''
-    try:
-        all_birds = BirdModel.query.all()
-        return [
-            {
-                "species": b.species,
-                "confidence": b.confidence,
-                "recording_session": b.recording_session
-            } 
-            for b in all_birds
-        ]   
-    except Exception as e:
-        return {"error": str(e)}
-    '''
+def results():
+    all_birds = BirdModel.query.all()
+    return [
+        {
+            "species": b.species,
+            "confidence": b.confidence,
+            "recording_session": b.recording_session
+        }
+        for b in all_birds
+    ]
+    
 if __name__ == "__main__":
 
     port = int(os.environ.get("PORT", 5000))
