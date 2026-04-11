@@ -90,7 +90,7 @@ def upload():
         print("Received:", file.filename)
 
         # process in background
-        threading.Thread(target=process_audio, args=(filepath,)).start()
+        process_audio(filepath)
 
     return {
         "status": "ok",
