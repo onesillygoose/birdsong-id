@@ -38,40 +38,44 @@ analyzer = Analyzer()
 
 def process_audio(filepath):
     try:
+        print("START PROCESSING:", filepath)
+
         recording = Recording(
             analyzer,
             filepath,
             lat=32.4,
             lon=-81.8,
-            date=datetime.now(), #yeah i will have to work on time again
-            min_conf=0.1,
+            date=datetime.now(),
+            min_conf=0.25,
         )
+
         recording.analyze()
-        
-        high_conf_results = [d for d in recording.detections if d["confidence"] > 0.1]
 
-        if high_conf_results:
-            with app.app_context():
-                for result in high_conf_results:
-                    new_detection = BirdModel(
-                        species=result["species"],
-                        confidence=result["confidence"],
-                        recording_session=os.path.basename(filepath)
-                    )
-                    db.session.add(new_detection)
-                db.session.commit()
+        print("DETECTIONS:", recording.detections)
 
-        print(f"Results saved for {filepath}!")
+        high_conf_results = [
+            d for d in recording.detections if d["confidence"] > 0.1
+        ]
 
-        for d in high_conf_results:
-            print(f"{d['species']} ({d['confidence']:.2f})")
+        print("FILTERED:", high_conf_results)
 
-        print("results saved")    
+        with app.app_context():
+            for result in high_conf_results:
+                print("SAVING:", result)
+
+                new_detection = BirdModel(
+                    species=result["species"],
+                    confidence=result["confidence"],
+                    recording_session=os.path.basename(filepath)
+                )
+                db.session.add(new_detection)
+
+            db.session.commit()
+
+        print("DONE PROCESSING:", filepath)
 
     except Exception as e:
-        print(f"Error: {e}")
-
-
+        print("PROCESS_AUDIO ERROR:", e)
 
 @app.route("/upload", methods=["POST"])
 def upload():
