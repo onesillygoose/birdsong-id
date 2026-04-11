@@ -96,7 +96,6 @@ def upload():
 
 @app.route("/results")
 def results():
-def results():
     all_birds = BirdModel.query.all()
     return [
         {
