@@ -16,13 +16,14 @@ api = Api(app)
 
 class BirdModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    species = db.Column(db.String(50), nullable=False)
+    species = db.Column(db.String(100), nullable=False)
+    scientific_name = db.Column(db.String(100), nullable=False)
     confidence = db.Column(db.Float, nullable=False)
     # timestamp = i will do this later ig
-    recording_session = db.Column(db.String(100), nullable=False)
+    recording_session = db.Column(db.String(200), nullable=False)
 
     def __repr__(self):
-        return f"Bird(species = {self.species}, confidence = {self.confidence})"
+        return f"Bird(species = {self.species}, confidence = {self.confidence})" #delete later
         
 with app.app_context():
     db.create_all()    
@@ -46,7 +47,7 @@ def process_audio(filepath):
             lat=32.4,
             lon=-81.8,
             date=datetime.now(),
-            min_conf=0.25,
+            min_conf=0.75,
         )
 
         recording.analyze()
@@ -54,7 +55,7 @@ def process_audio(filepath):
         print("DETECTIONS:", recording.detections)
 
         high_conf_results = [
-            d for d in recording.detections if d["confidence"] > 0.1
+            d for d in recording.detections if d["confidence"] > 0.75
         ]
 
         print("FILTERED:", high_conf_results)
@@ -64,8 +65,9 @@ def process_audio(filepath):
                 print("SAVING:", result)
 
                 new_detection = BirdModel(
-                    species=result["species"],
-                    confidence=result["confidence"],
+                    species=result.get("common_name"),
+                    scientific_name=result.get("scientific_name"),
+                    confidence=result.get("confidence", 0.0),
                     recording_session=os.path.basename(filepath)
                 )
                 db.session.add(new_detection)
@@ -104,6 +106,7 @@ def results():
     return [
         {
             "species": b.species,
+            "scientific_name": b.scientific_name,
             "confidence": b.confidence,
             "recording_session": b.recording_session
         }
