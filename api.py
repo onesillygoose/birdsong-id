@@ -103,6 +103,8 @@ def upload():
 @app.route("/results")
 def results():
     all_birds = BirdModel.query.all()
+    render_template("index.html", birds=all_birds)
+    '''
     return [
         {
             "species": b.species,
@@ -112,7 +114,7 @@ def results():
         }
         for b in all_birds
     ]
-    
+    '''
 if __name__ == "__main__":
 
     port = int(os.environ.get("PORT", 5000))
