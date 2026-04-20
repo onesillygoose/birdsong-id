@@ -8,6 +8,24 @@
 </head>
 <body>
   <h1>Bird Song ID</h1>
-  <p>Locations:</p>
+  <table border="1">
+      <tr>
+          <th>Species</th>
+          <th>Scientific Name</th>
+          <th>Confidence</th>
+          <th>Session</th>
+      </tr>
+
+      {% for b in birds %}
+      <tr>
+          <td>{{ b.species }}</td>
+          <td><i>{{ b.scientific_name }}</i></td>
+          <td>{{ b.confidence }}</td>
+          <td>{{ b.recording_session }}</td>
+      </tr>
+      {% endfor %}
+
+  </table>
+
 </body>
 </html>
