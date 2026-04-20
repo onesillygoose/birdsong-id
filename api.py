@@ -34,7 +34,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 @app.route("/")
 def home():
     all_birds = BirdModel.query.all()
-    render_template("index.html", birds=all_birds)
+    return render_template("index.html", birds=all_birds)
     
 analyzer = Analyzer()
 
