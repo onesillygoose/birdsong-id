@@ -22,8 +22,8 @@ table {
 }
 
 th {
-  background-color: #bcd9bc;
-  color: #2f5d3a;
+  background-color: #a1c1a1;
+  color: #1c481c;
   text-align: left;
   padding: 12px;
   font-size: 16px;
@@ -35,7 +35,7 @@ td {
 }
 
 tr:hover {
-  background-color: #f3f8f3;
+  background-color: #d5ffda;
 }
 
 

@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bird Song ID</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bird Song ID</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <h1>Bird Song ID</h1>
-  <table border="1">
+  <table id="recordingsTable">
+    <thead>
       <tr>
-          <th>Species</th>
-          <th>Scientific Name</th>
-          <th>Confidence</th>
-          <th>Session</th>
+          <th onclick="sortRecordings(0)">Recording Session</th>
+          <th onclick="sortRecordings(1)">Species</th>
+          <th onclick="sortRecordings(2)">Scientific Name</th>
+          <th onclick="sortRecordings(3)">Confidence</th>
       </tr>
+    </thead>  
 
+    <tbody>
       {% for b in birds %}
       <tr>
+          <td>{{ b.recording_session }}</td>
           <td>{{ b.species }}</td>
           <td><i>{{ b.scientific_name }}</i></td>
           <td>{{ b.confidence }}</td>
-          <td>{{ b.recording_session }}</td>
+
       </tr>
       {% endfor %}
-
+    </tbody>
+    
   </table>
 
 </body>
