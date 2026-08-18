@@ -1,14 +1,50 @@
 body {
   background-color: #fff2db;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  margin: 40px;
+  margin: 0px;
   color: #2f3b2f;
+  height: 100%;
+}
+
+.bg1 {
+  background-image: url("{{ url_for('static', filename='images/heron.jpg') }}");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+}
+
+.bg1text {
+  position: absolute;
+  bottom: 8%;
+  right: 8%;          
+  color: #ffffff;      
+  font-family: sans-serif;
+  text-align: right;   
+  max-width: 40%;      
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #000517;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 
 h1 {
   font-size: 40px;
-  color: #0f370f;
+  color: #aec1e6;
   margin-bottom: 20px;
 } 
 

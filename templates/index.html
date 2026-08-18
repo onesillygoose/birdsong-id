@@ -3,34 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bird Song ID</title>
+  <title>birding with me</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>Bird Song ID</h1>
-  <table id="recordingsTable">
-    <thead>
-      <tr>
-          <th onclick="sortRecordings(0)">Recording Session</th>
-          <th onclick="sortRecordings(1)">Species</th>
-          <th onclick="sortRecordings(2)">Scientific Name</th>
-          <th onclick="sortRecordings(3)">Confidence</th>
-      </tr>
-    </thead>  
 
-    <tbody>
-      {% for b in birds %}
-      <tr>
-          <td>{{ b.recording_session }}</td>
-          <td>{{ b.species }}</td>
-          <td><i>{{ b.scientific_name }}</i></td>
-          <td>{{ b.confidence }}</td>
+  <div class="topnav">
+    <a href="#home">birding with me</a>
+    <a href="#blog">blog</a>
+    <a href="#data">data</a>
+    <a href="#resources">resources</a>
+  </div>
 
-      </tr>
-      {% endfor %}
-    </tbody>
-    
-  </table>
+  <div class="bg1" id="home">
+    <div class="bg1text">
+      <h1>birding with me</h1>
+      <p>raspberry pi bird audio detector data, resources, and blog</p>
+      <p>credit to william foley for great blue heron photo on unsplash</p>
+    </div>    
+  </div>
+  
+  <div class="blog">
+    <h1>blog</h1>
+    <p>coming soon</p>
+  </div>
+
+  <div id="data">
+    <h1>data for location in georgia, united states</h1>
+    <table id="recordingsTable">
+      <thead>
+        <tr>
+            <th onclick="sortRecordings(0)">Recording Session</th>
+            <th onclick="sortRecordings(1)">Species</th>
+            <th onclick="sortRecordings(2)">Scientific Name</th>
+            <th onclick="sortRecordings(3)">Confidence</th>
+        </tr>
+      </thead>  
+
+      <tbody>
+        {% for b in birds %}
+        <tr>
+            <td>{{ b.recording_session }}</td>
+            <td>{{ b.species }}</td>
+            <td><i>{{ b.scientific_name }}</i></td>
+            <td>{{ b.confidence }}</td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+      
+    </table>
+  </div>
+
+  <div class="resources">
+    <h1>resources</h1>
+    <p>coming soon with a how-to guide, contact info, and credits</p>
+  </div>
 
 </body>
 </html>
