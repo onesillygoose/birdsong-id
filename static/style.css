@@ -1,8 +1,7 @@
 body {
-  background-color: #fff2db;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #eef6ff;
   margin: 0px;
-  color: #2f3b2f;
+  color: #202021;;
   height: 100%;
 }
 
@@ -20,15 +19,51 @@ body {
   position: absolute;
   bottom: 8%;
   right: 8%;          
-  color: #ffffff;      
-  font-family: sans-serif;
   text-align: right;   
   max-width: 40%;      
 }
 
+.bg2 {
+  background-image: url("images/barnswallow.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+}
+
+.bg2text {
+  position: absolute;
+  top: 8%;
+  left: 8%;          
+  text-align: left;   
+  max-width: 40%;      
+  color: #18293b;
+}
+
+.bg3 {
+  background-image: url("images/eagle.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+}
+
+.bg3text {
+  position: absolute;
+  bottom: 8%;
+  left: 8%;          
+  text-align: right;   
+  max-width: 40%;      
+  color: rgb(32, 29, 26);
+}
+
 .topnav {
   overflow: hidden;
-  background-color: #000517;
+  background-color: #18293b;
 }
 
 .topnav a {
@@ -37,29 +72,68 @@ body {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
 }
 
+.blogpost {
+  background-color: #d9e6f5;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 30%;
+}
+
+.container {
+  padding: 4px 16px;
+  font-family: "Literata", serif;
+}
+
+.container h2 {
+  font-family: "Literata", sans-serif;
+  font-size: 34px;
+}
+
+.container p {
+  font-family: "Literata", sans-serif;
+  font-size: 18px;
+}
 
 h1 {
-  font-size: 40px;
-  color: #aec1e6;
+  font-size: 60px;
+  color: #527497;
   margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
 } 
+
+h2 {
+  font-size: 40px;
+  color: #527497;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 650;
+}
+
+p {
+  font-size: 20px;
+  color: #202021;
+  line-height: 1.6;
+  font-family: "Literata", serif;
+}
 
 table {
   width: 100%;
   border-collapse: collapse;
-  border: 2px solid #2f3b2f;
+  border: 2px solid #202021;
   border-radius: 10px;
   overflow: scroll;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.075);
 }
 
 th {
-  background-color: #a1c1a1;
-  color: #1c481c;
+  background-color: #bfd2e4;
+  color: #527497;
   text-align: left;
   padding: 12px;
   font-size: 16px;
@@ -68,10 +142,11 @@ th {
 td {
   padding: 12px 14px;
   font-size: 14px;
+  font-family: "Inter", sans-serif;
 }
 
 tr:hover {
-  background-color: #d5ffda;
+  background-color: #a1c8eb;
 }
 
 

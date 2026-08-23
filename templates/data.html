@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>birding with me</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="topnav">
+      <a href="{{ url_for('home') }}">home</a>
+      <a href="{{ url_for('blog') }}">blog</a>
+      <a href="{{ url_for('data') }}">data</a>
+    </div>
+  </nav>
+
+  <div class="bg2">
+    <div class="bg2text">
+      <h1>data</h1>
+      <p>credit to patrice bouchard for barn swallow photo on unsplash</p>
+    </div>    
+  </div>
+
+    <div id="data">
+      <h2>data</h2>
+      <p>Location: Statesboro, Georgia, United States</p>
+      <p>Click on any column header to sort the table.</p>
+      <table id="recordingsTable">
+        <thead>
+          <tr>
+              <th onclick="sortRecordings(0)">Recording Session</th>
+              <th onclick="sortRecordings(1)">Species</th>
+              <th onclick="sortRecordings(2)">Scientific Name</th>
+              <th onclick="sortRecordings(3)">Confidence</th>
+          </tr>
+        </thead>  
+
+        <tbody>
+          {% for b in birds %}
+          <tr>
+              <td>{{ b.recording_session }}</td>
+              <td>{{ b.species }}</td>
+              <td><i>{{ b.scientific_name }}</i></td>
+              <td>{{ b.confidence }}</td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

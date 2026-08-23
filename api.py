@@ -31,10 +31,19 @@ with app.app_context():
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+@app.route("/data")
+def data():
+    all_birds = BirdModel.query.all()
+    return render_template("data.html", birds=all_birds)
+
+@app.route("/blog")
+def blog():
+    return render_template("blog.html")
+
 @app.route("/")
 def home():
-    all_birds = BirdModel.query.all()
-    return render_template("index.html", birds=all_birds)
+    return render_template("index.html")
+
     
 analyzer = Analyzer()
 
