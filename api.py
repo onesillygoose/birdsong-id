@@ -33,7 +33,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route("/data")
 def data():
-    all_birds = BirdModel.query.all()
+    all_birds = BirdModel.query.order_by(BirdModel.recording_session.desc()).all()
     return render_template("data.html", birds=all_birds)
 
 @app.route("/blog")
@@ -57,7 +57,7 @@ def process_audio(filepath):
             lat=32.4,
             lon=-81.8,
             date=datetime.now(),
-            min_conf=0.75,
+            min_conf=0.80,
         )
 
         recording.analyze()
@@ -65,7 +65,7 @@ def process_audio(filepath):
         print("DETECTIONS:", recording.detections)
 
         high_conf_results = [
-            d for d in recording.detections if d["confidence"] > 0.75
+            d for d in recording.detections if d["confidence"] > 0.80
         ]
 
         print("FILTERED:", high_conf_results)
@@ -77,7 +77,7 @@ def process_audio(filepath):
                 new_detection = BirdModel(
                     species=result.get("common_name"),
                     scientific_name=result.get("scientific_name"),
-                    confidence=result.get("confidence", 0.0),
+                    confidence = round(result.get("confidence", 0.00), 2),
                     recording_session=os.path.basename(filepath)
                 )
                 db.session.add(new_detection)
@@ -110,22 +110,6 @@ def upload():
         "message": "Processing started"
     }
 
-'''
-@app.route("/results")
-def results():
-    all_birds = BirdModel.query.all()
-    render_template("index.html", birds=all_birds)
-    
-    return [
-        {
-            "species": b.species,
-            "scientific_name": b.scientific_name,
-            "confidence": b.confidence,
-            "recording_session": b.recording_session
-        }
-        for b in all_birds
-    ]
-'''
 if __name__ == "__main__":
 
     port = int(os.environ.get("PORT", 5000))
