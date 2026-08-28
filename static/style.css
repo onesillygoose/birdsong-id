@@ -5,6 +5,29 @@ body {
   height: 100%;
 }
 
+h1 {
+  font-size: 60px;
+  color: #5e84aa;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+} 
+
+h2 {
+  font-size: 40px;
+  color: #5e84aa;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 650;
+}
+
+p {
+  font-size: 20px;
+  color: #202021;
+  line-height: 1.6;
+  font-family: "Literata", serif;
+}
+
 .bg1 {
   background-image: url("images/heron.jpg");
   height: 100vh;
@@ -56,7 +79,7 @@ body {
   position: absolute;
   bottom: 8%;
   left: 8%;          
-  text-align: right;   
+  text-align: left;   
   max-width: 40%;      
   color: rgb(32, 29, 26);
 }
@@ -100,53 +123,32 @@ body {
   font-size: 18px;
 }
 
-h1 {
-  font-size: 60px;
-  color: #527497;
-  margin-bottom: 20px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
-} 
-
-h2 {
-  font-size: 40px;
-  color: #527497;
-  margin-bottom: 20px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 650;
-}
-
-p {
-  font-size: 20px;
-  color: #202021;
-  line-height: 1.6;
-  font-family: "Literata", serif;
-}
-
 table {
   width: 100%;
+  box-sizing: border-box;
   border-collapse: collapse;
   border: 2px solid #202021;
   border-radius: 10px;
   overflow: scroll;
+  font-family: "Inter", sans-serif;
+
 }
 
 th {
   background-color: #bfd2e4;
-  color: #527497;
+  color: #5e84aa;
   text-align: left;
   padding: 12px;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 td {
   padding: 12px 14px;
   font-size: 14px;
-  font-family: "Inter", sans-serif;
 }
 
 tr:hover {
-  background-color: #a1c8eb;
+  background-color: #a1cbf0;
 }
 
 
